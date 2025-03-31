@@ -1,0 +1,17 @@
+spring:
+  application:
+    name: prototype
+  redis:
+    host: host
+    port: 6379
+    password: your-password
+    database: 0
+    timeout: 2000
+  kafka:
+    bootstrap-servers: localhost:9092   # Dirección de tu servidor Kafka
+    consumer:
+      group-id: test-group              # ID del grupo de consumidores
+      auto-offset-reset: earliest       # Cuando no haya offset, comienza desde el más antiguo
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
