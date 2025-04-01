@@ -14,7 +14,7 @@ Two use cases have been defined:
 - We register it in the Market Depth service
 ## Case 2:
 - We receive a buy event
-- We block the event so that there is only one processing (Concurrency)
+- We lock the event so that there is only one processing. If event it´s already locked a Mono.Error is returned.
 - We obtain the VWAP stored in our repository
 - We recalculate by adding the new trade
 - We publish to the VWAP broker

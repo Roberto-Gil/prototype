@@ -21,7 +21,7 @@ public class TradeService {
         return lockTradePort.lockTrade(trade)
         .flatMap(this::addTradeToVolumeWeightedAveragePrice)
         .flatMap(vwapPublisherPort::publish)
-        .flatMap((vwap)-> Mono.defer(() -> vWAPRepositoryPort.save(vwap)))
+        .flatMap(vWAPRepositoryPort::save)
         .thenReturn(trade);
     }
 

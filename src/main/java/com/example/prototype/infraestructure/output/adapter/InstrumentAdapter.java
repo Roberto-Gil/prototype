@@ -16,10 +16,8 @@ public class InstrumentAdapter implements InstrumentPort {
     @Override
     public Mono<Instrument> addInstrument(Instrument instrument) {
         return instrumentRepository.getValue(instrument.getId())
-                .switchIfEmpty(Mono.defer(
-                        () -> instrumentRepository.saveValue(instrument.getId(), instrument.getName())
-                                .thenReturn(instrument.getId())
-                )).thenReturn(instrument);
+                .switchIfEmpty(Mono.just(instrumentRepository.saveValue(instrument.getId(), instrument.getName())).thenReturn(instrument.getId()))
+                .thenReturn(instrument);
     }
 }
 
